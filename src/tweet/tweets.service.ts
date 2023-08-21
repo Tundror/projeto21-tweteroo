@@ -1,8 +1,8 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { CreateTweetDto } from 'src/dtos/tweet.dto';
-import { Tweet } from 'src/entities/tweet.entity';
-import { User } from 'src/entities/user.entity';
-import { SignUpService } from 'src/sign-up/sign-up.service';
+import { CreateTweetDto } from '../dtos/tweet.dto';
+import { Tweet } from '../entities/tweet.entity';
+import { User } from '../entities/user.entity';
+import { SignUpService } from '../sign-up/sign-up.service';
 
 @Injectable()
 export class TweetsService {
@@ -30,7 +30,7 @@ export class TweetsService {
     if(page <= 0) throw new HttpException("Informe uma página válida!", HttpStatus.BAD_REQUEST)
     const finalItem = page*15 | 15
     const initialItem = finalItem - 15
-    const slicedTweets = this.tweets.slice(initialItem, finalItem)
+    const slicedTweets = this.tweets.slice(page > 1 ? initialItem -1 : initialItem, page > 1 ? finalItem -1 : finalItem)
     const tweetsReturn = slicedTweets.map((tweet) => tweet.getUserInfo());
 
     return tweetsReturn
@@ -42,6 +42,7 @@ export class TweetsService {
     })
     console.log(filteredTweets)
     if (filteredTweets.length === 0) return []
-    else return filteredTweets
+    const tweetsReturn = filteredTweets.map((tweet) => tweet.getUserInfo());
+    return tweetsReturn
   }
 }

@@ -1,5 +1,5 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
-import { CreateUserDto } from 'src/dtos/user.dto';
+import { Body, Controller, Get, HttpCode, HttpStatus, Post } from '@nestjs/common';
+import { CreateUserDto } from '../dtos/user.dto';
 import { SignUpService } from './sign-up.service';
 
 @Controller('sign-up')
@@ -7,7 +7,9 @@ export class SignUpController {
   constructor(private readonly signUpService: SignUpService) {}
 
   @Post()
+  @HttpCode(200)
   createUser(@Body() body: CreateUserDto) {
-    return this.signUpService.createUser(body)
+    this.signUpService.createUser(body)
+    return HttpStatus.OK
   }
 }

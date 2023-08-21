@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { SignUpModule } from 'src/sign-up/sign-up.module';
+import { SignUpModule } from '../sign-up/sign-up.module';
 import { TweetsService } from './tweets.service';
 import { TweetsController } from './tweets.controller';
 

@@ -1,8 +1,6 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
-import { CreateUserDto } from 'src/dtos/user.dto';
+import { Body, Controller, Get, HttpCode, Param, Post, Query } from '@nestjs/common';
 import { TweetsService } from './tweets.service';
-import { CreateTweetDto } from 'src/dtos/tweet.dto';
-import { SignUpService } from 'src/sign-up/sign-up.service';
+import { CreateTweetDto } from '../dtos/tweet.dto';
 
 @Controller('tweets')
 export class TweetsController {
