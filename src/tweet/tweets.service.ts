@@ -35,4 +35,13 @@ export class TweetsService {
 
     return tweetsReturn
   }
+
+  getTweetByUsername(username: string) {
+    const filteredTweets = this.tweets.filter((tweet) => {
+        return tweet.getUserInfo().username === username
+    })
+    console.log(filteredTweets)
+    if (filteredTweets.length === 0) return []
+    else return filteredTweets
+  }
 }

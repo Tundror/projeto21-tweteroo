@@ -20,4 +20,8 @@ export class TweetsController {
     const parsedPage = parseInt(page)
     return this.tweetsService.getTweet(parsedPage);
   }
+  @Get('/:username')
+  getTweetsByUser(@Param('username') username: string) {
+    return this.tweetsService.getTweetByUsername(username)
+  }
 }
